@@ -2,7 +2,47 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://www.datad.com.br/2017/04/null/</loc>
+    <lastmod>2017-04-30T10:02:37-03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.datad.com.br/categories/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.datad.com.br/categories/dart/</loc>
+    <lastmod>2017-04-30T10:02:37-03:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.datad.com.br/tags/linguagem/</loc>
+    <lastmod>2017-04-30T10:02:37-03:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.datad.com.br/tags/orienta%C3%A7%C3%A3o-a-objetos/</loc>
+    <lastmod>2017-04-30T10:02:37-03:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.datad.com.br/post/</loc>
+    <lastmod>2017-04-30T10:02:37-03:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.datad.com.br/tags/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>http://www.datad.com.br/</loc>
+    <lastmod>2017-04-30T10:02:37-03:00</lastmod>
     <priority>0</priority>
   </url>
   

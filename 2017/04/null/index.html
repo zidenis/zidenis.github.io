@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<meta property="og:title" content="Entendendo o que é _`Null`_ em Dart" />
+<meta property="og:description" content="Detalha as características do Null na linguagem Dart" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://www.datad.com.br/2017/04/null/" />
+
+
+
+<meta property="article:published_time" content="2017-04-30T00:00:00&#43;00:00"/>
+
+<meta property="article:modified_time" content="2017-04-30T10:02:37-03:00"/>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <meta name="twitter:card" content="summary"/>
+
+
+
+<meta name="twitter:text:title" content="Entendendo o que é _`Null`_ em Dart"/>
+<meta name="twitter:title" content="Entendendo o que é _`Null`_ em Dart"/>
+<meta name="twitter:description" content="Detalha as características do Null na linguagem Dart"/>
+
+<meta name="generator" content="Hugo 0.19" />
+
+
+    
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Entendendo o que é _`Null`_ em Dart",
+  "url": "http://www.datad.com.br/2017/04/null/",
+  "wordCount": "478",
+  "datePublished": "2017-04-30T00:00:00&#43;00:00",
+  "dateModified": "2017-04-30T10:02:37-03:00",
+  "author": {
+    "@type": "Person",
+    "name": "zidenis"
+  },
+  "keywords": "Dart,Linguagem,Orientação a Objetos",
+  "description": "Detalha as características do Null na linguagem Dart"
+}
+</script>
+
+
+
+    <link rel="canonical" href="http://www.datad.com.br/2017/04/null/">
+
+    <title>Entendendo o que é &lt;em&gt;&lt;code&gt;Null&lt;/code&gt;&lt;/em&gt; em Dart | datad</title>
+
+    <!-- combined, minified CSS -->
+    <link href="http://www.datad.com.br/css/style.css" rel="stylesheet" integrity="sha384-KgZMa5t4zn&#43;0nHuId9vV0Oqe9qSvqAhmtw588G8XKQmOFtA&#43;y4ZkRl2JPMhw1dsN" crossorigin="anonymous">
+
+    
+
+    
+
+    
+
+    
+<link href="http://www.datad.com.br/css/custom.css" rel="stylesheet" crossorigin="anonymous">
+<script type="text/javascript" src="http://www.datad.com.br//js/jquery1.9.1.min.js"></script>
+<script type="text/javascript" src="http://www.datad.com.br//js/gist-embed2.4.min.js"></script>
+  </head>
+
+  <body>
+
+    <div class="blog-masthead">
+      <div class="container">
+        <nav class="nav blog-nav">
+          <a class="nav-link " href="http://www.datad.com.br/">Home</a>
+          
+          
+          
+          
+          <a class="nav-link " href="http://www.datad.com.br/categories/dart/">
+             <img src="/imgs/dart-logo_64.png" alt="Dart Language"> 
+          </a>
+          
+          
+          <a class="nav-link " href="http://www.datad.com.br/categories/postgresql/">
+             <img src="/imgs/postgresql-logo_64.png" alt="PostgreSQL"> 
+          </a>
+           
+          
+        </nav>
+      </div>
+    </div>
+
+    
+
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-8 blog-main">
+
+          
+
+
+<article class="blog-post">
+  <header>
+    <h2 class="blog-post-title"><a href="http://www.datad.com.br/2017/04/null/">Entendendo o que é <em><code>Null</code></em> em Dart</a></h2>
+    <p class="blog-post-meta"><time datetime="2017-04-30T10:02:37-03:00">30 Apr 2017</time> by zidenis in 
+<i class="fa fa-folder" aria-hidden="true"></i>&nbsp;<a href="/categories/dart" rel="category tag">Dart</a>
+
+
+<i class="fa fa-tag" aria-hidden="true"></i>&nbsp;<a href="/tags/linguagem" rel="tag">Linguagem</a>, <a href="/tags/orienta%C3%A7%C3%A3o-a-objetos" rel="tag">Orientação a Objetos</a>
+
+</p>
+  </header>
+  <p><code>null</code> apresenta particularidades em Dart que o diferencia de outras linguagens de programação como C, Java e Javascript. A começar por <code>null</code> ser um objeto como qualquer outro (em Dart tudo é um objeto) enquanto que em Java, por exemplo, ele é um valor literal. São questões sutís que precisamos ficar atentos na hora de programar, conforme veremos.</p>
+
+<p></p>
+
+<p>A expressão <code>null</code> é uma palavra reservada da linguagem que representa o objeto <em>null</em>. Esse objeto é a <strong>única instância</strong> da classe <code>Null</code>, implementada na <a href="https://github.com/dart-lang/sdk/blob/master/sdk/lib/core/null.dart"><em>Dart SDK Core Library</em></a> conforme código abaixo (simples, não?). Ou seja, não é possível instanciar um novo objeto dessa classe. A linguagem também não permite que a classe <code>Null</code> seja herdada (<code>extends</code>) ou tenha sua interface reusada (<code>implements</code>).</p>
+
+<p><code data-gist-id="5cf8f8ae92e359fcee5d0a5f2b54f046" data-gist-line="5,6,14-17,19,22,23" data-gist-hide-footer="true" data-gist-hide-line-numbers="true"></code></p>
+
+<p>Um detalhe &ndash; o diabo mora neles &ndash; a partir da <a href="https://github.com/dart-lang/sdk/blob/master/CHANGELOG.md#language-1">versão 1.22</a> o tipo <code>Null</code> é um tipo <code>bottom</code> da linguagem. Ou seja, é considerado subtipo de <strong>todos</strong> os outros tipos. Na prática, o objeto <code>null</code> sempre foi tratado na linguagem como sendo do tipo <code>bottom</code>, tanto é que <code>null</code> pode ser atribuído a variáveis de qualquer tipo (exemplo <code>int variavelA = null;</code>).</p>
+
+<p>É importante notar que <strong>toda</strong> nova variável alocada é inicialmente uma referência para <code>null</code>. Isso garante que o usuário nunca encontre uma variável não inicializada em memória, o que poderia resultar em comportamentos indeterminados, assim como pode ocorrer na linguagem C.</p>
+
+<p><code data-gist-id="946a4c92c987c399fff5f22b9caf976b" data-gist-hide-footer="true" data-gist-hide-line-numbers="true"></code></p>
+
+<p>Mas é por conta dessa referência para <code>null</code> que esbarramos nos famigerados erros <code>NullPointerException</code> (Java) ou <code>Uncaught TypeError</code> (Dart). A necessidade de tratar essas ocorrências é tão frequente que Dart a partir da <a href="http://news.dartlang.org/2015/08/dart-112-released-with-null-aware.html">versão 1.12</a> fornece operadores especiais, chamados de <code>null-aware operators</code>. Eles ajudam a reduzir a quantidade de código, tornando-o mais legível e expressivo.</p>
+
+<ul>
+<li><strong><code>??</code> <em>if-null operator</em></strong></li>
+</ul>
+
+<p>A expressão <code>exp1 ?? exp2</code> resulta no valor de <code>exp1</code> caso <code>exp1 != null</code> ou no valor de <code>exp2</code> caso <code>exp1 == null</code>.</p>
+
+<p><code data-gist-id="648ac7ea9b3ed11b04a39d6ad45bad90" data-gist-hide-footer="true" data-gist-hide-line-numbers="true"></code></p>
+
+<ul>
+<li><strong><code>??=</code> <em>null-aware assignment</em></strong></li>
+</ul>
+
+<p>Esse é um operador que combina o operador de atribuição <code>=</code> com a condição <code>== null</code> de forma que a atribuição só é realizada se a variável for nula. Ou seja, a declaração <code>variable ??= exp</code> faz com que o valor de <code>exp</code> seja atribuído a <code>variable</code> somente se <code>variable == null</code>.</p>
+
+<p><code data-gist-id="d539247177490033fe7945912beffbe3" data-gist-hide-footer="true" data-gist-hide-line-numbers="true"></code></p>
+
+<ul>
+<li><strong><code>?.</code> <em>conditional member access</em></strong></li>
+</ul>
+
+<p>Este operador realiza o acesso a um membro do objeto (propriedade ou método) desde que o objeto não seja igual a <code>null</code>. Ou seja, <code>obj?.prop</code> é avaliada como <code>obj.prop</code> se <code>obj != null</code> ou como <code>null</code> se <code>obj == null</code>, e o método <code>obj?.met()</code> chama o método <code>met()</code>somente se <code>obj != null</code>.</p>
+
+<p><code data-gist-id="78cd3ae0723e073b5caf5104e611f40d" data-gist-hide-footer="true" data-gist-hide-line-numbers="true"></code></p>
+
+<p>Ainda assim, essa é uma questão tão importante que uma provável evolução da linguagem é o suporte a tipos não-nuláveis (<code>non-nullable types</code>). De fato, tipos não-nulos podem ser o padrão (<em>Non Nullable by Default</em> - NNBD) da linguagem, uma mudança impactante que quebraria a compatibilidade (<em>breaking change</em>) com os códigos atuais e, portanto, deve fazer parte apenas com Dart 2.0.</p>
+
+  
+
+  
+  <hr>
+  <footer>
+
+  
+    <section>
+    <h4>Compartilhe</h4>
+    <nav class="nav sharing-icons">
+      <a class="nav-item" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fwww.datad.com.br%2f2017%2f04%2fnull%2f" title="Share on Facebook"><span class="fa fa-facebook fa-2x" aria-hidden="true"></span></a>
+      <a class="nav-item" href="https://plus.google.com/share?url=http%3a%2f%2fwww.datad.com.br%2f2017%2f04%2fnull%2f" title="Share on Google+"><span class="fa fa-google-plus fa-2x" aria-hidden="true"></span></a>
+      <a class="nav-item" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=http%3a%2f%2fwww.datad.com.br%2f2017%2f04%2fnull%2f" title="Share on LinkedIn"><span class="fa fa-linkedin fa-2x" aria-hidden="true"></span></a>
+      <a class="nav-item" href="https://twitter.com/home?status=http%3a%2f%2fwww.datad.com.br%2f2017%2f04%2fnull%2f" title="Tweet this"><span class="fa fa-twitter fa-2x"></span></a>
+    </nav>
+  </section>
+
+  
+
+  
+  <div id="disqus_thread"></div>
+<script type="text/javascript">
+
+(function() {
+  
+  
+  if (window.location.hostname == "localhost")
+    return;
+
+  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+  var disqus_shortname = 'datad';
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com/" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+  
+  </footer>
+  
+
+</article> 
+
+
+
+        </div> <!-- /.blog-main -->
+
+        <aside class="col-sm-3 offset-sm-1 blog-sidebar">
+  
+  <section class="sidebar-module sidebar-module-inset">
+    <h4>Sobre</h4>
+    <p>um site sobre Dart <em>language</em>, PostgreSQL e tecnologias relacionadas</p>
+  </section>
+  
+
+  
+        <section class="sidebar-module">
+    <h4>Posts Recentes</h4>
+    <ol class="list-unstyled">
+
+
+<li><a href="/2017/04/null/">Entendendo o que é <em><code>Null</code></em> em Dart</a></li>
+
+    </ol>
+  </section>
+
+  
+
+  
+</aside>
+
+
+      </div> <!-- /.row -->
+    </div> <!-- /.container -->
+
+    <footer class="blog-footer">
+      <p>
+      
+      created with <a class="discreteLink" href="https://gohugo.io" target="_blank">Hugo</a> and <a class="discreteLink"  href="https://github.com/alanorth/hugo-theme-bootstrap4-blog" target="_blank">hugo-theme-bootstrap4-blog</a>
+      
+      </p>
+      <p>
+      <a href="#"></a>
+      </p>
+    </footer>
+
+  </body>
+
+</html>

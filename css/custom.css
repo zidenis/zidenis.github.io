@@ -28,3 +28,7 @@ h4 {
     border-bottom: .6rem solid;
     border-left: .6rem solid transparent;
 }
+
+code {
+    padding: 0px 0px;
+}
