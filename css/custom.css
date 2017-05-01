@@ -32,3 +32,29 @@ h4 {
 .gist .gist-file {
     margin-bottom: 0px;
 }
+
+#datad-logo {
+    font-family: Helvetica, Sans-Serif;
+    font-size: 90px;
+    line-height: 70px;
+    color: rgb(0, 166, 224);
+    font-weight: 500;
+}
+
+#datad-logo:after {
+    content: "D";
+    position: absolute;
+    left: 32px;
+    top: 18px;
+    color: rgba(64, 222, 204, 0.7);    
+    -moz-transform: scale(-1, 1);
+    -webkit-transform: scale(-1, 1);
+    -o-transform: scale(-1, 1);
+    -ms-transform: scale(-1, 1);
+    transform: scale(-1, 1);
+}
+
+#datad-logo:hover {
+    color: rgb(44, 104, 143);
+}
+    
