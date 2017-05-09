@@ -2,6 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://www.datad.com.br/2017/05/tudo-objeto/</loc>
+    <lastmod>2017-05-09T18:08:20-03:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://www.datad.com.br/2017/04/null/</loc>
     <lastmod>2017-04-30T10:02:37-03:00</lastmod>
   </url>
@@ -13,25 +18,25 @@
   
   <url>
     <loc>http://www.datad.com.br/categories/dart/</loc>
-    <lastmod>2017-04-30T10:02:37-03:00</lastmod>
+    <lastmod>2017-05-09T18:08:20-03:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>http://www.datad.com.br/tags/language/</loc>
-    <lastmod>2017-04-30T10:02:37-03:00</lastmod>
+    <lastmod>2017-05-09T18:08:20-03:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>http://www.datad.com.br/tags/oop/</loc>
-    <lastmod>2017-04-30T10:02:37-03:00</lastmod>
+    <lastmod>2017-05-09T18:08:20-03:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>http://www.datad.com.br/post/</loc>
-    <lastmod>2017-04-30T10:02:37-03:00</lastmod>
+    <lastmod>2017-05-09T18:08:20-03:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -42,7 +47,7 @@
   
   <url>
     <loc>http://www.datad.com.br/</loc>
-    <lastmod>2017-04-30T10:02:37-03:00</lastmod>
+    <lastmod>2017-05-09T18:08:20-03:00</lastmod>
     <priority>0</priority>
   </url>
   

@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<meta property="og:title" content="Tudo em Dart são objetos" />
+<meta property="og:description" content="Sobre o porque de Dart ser uma linguagem orientada à objetos pura" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://www.datad.com.br/2017/05/tudo-objeto/" />
+
+
+
+<meta property="article:published_time" content="2017-04-01T00:00:00&#43;00:00"/>
+
+<meta property="article:modified_time" content="2017-05-09T18:08:20-03:00"/>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <meta name="twitter:card" content="summary"/>
+
+
+
+<meta name="twitter:text:title" content="Tudo em Dart são objetos"/>
+<meta name="twitter:title" content="Tudo em Dart são objetos"/>
+<meta name="twitter:description" content="Sobre o porque de Dart ser uma linguagem orientada à objetos pura"/>
+
+<meta name="generator" content="Hugo 0.19" />
+
+
+    
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Tudo em Dart são objetos",
+  "url": "http://www.datad.com.br/2017/05/tudo-objeto/",
+  "wordCount": "418",
+  "datePublished": "2017-04-01T00:00:00&#43;00:00",
+  "dateModified": "2017-05-09T18:08:20-03:00",
+  "author": {
+    "@type": "Person",
+    "name": "zidenis"
+  },
+  "keywords": "Dart,Language,OOP",
+  "description": "Sobre o porque de Dart ser uma linguagem orientada à objetos pura"
+}
+</script>
+
+
+
+    <link rel="canonical" href="http://www.datad.com.br/2017/05/tudo-objeto/">
+
+    <title>Tudo em Dart são objetos | datad</title>
+
+    <!-- combined, minified CSS -->
+    <link href="http://www.datad.com.br/css/style.css" rel="stylesheet" integrity="sha384-KgZMa5t4zn&#43;0nHuId9vV0Oqe9qSvqAhmtw588G8XKQmOFtA&#43;y4ZkRl2JPMhw1dsN" crossorigin="anonymous">
+
+    
+
+    
+
+    
+
+    
+<link href="http://www.datad.com.br/css/custom.css" rel="stylesheet" crossorigin="anonymous">
+<script type="text/javascript" src="http://www.datad.com.br//js/jquery1.9.1.min.js"></script>
+<script type="text/javascript" src="http://www.datad.com.br//js/gist-embed2.4.min.js"></script>
+  </head>
+
+  <body>
+
+    <div class="blog-masthead">
+      <div class="container">
+        <nav class="nav blog-nav">
+          <a class="nav-link " href="http://www.datad.com.br/"><span id="datad-logo">D</span></a>
+          
+          
+          
+          
+          <a class="nav-link " href="http://www.datad.com.br/categories/dart/">
+             <img src="/imgs/dart-logo_64.png" alt="Dart Language"> 
+          </a>
+          
+          
+          <a class="nav-link " href="http://www.datad.com.br/categories/postgresql/">
+             <img src="/imgs/postgresql-logo_64.png" alt="PostgreSQL"> 
+          </a>
+           
+          
+        </nav>
+      </div>
+    </div>
+
+    
+
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-8 blog-main">
+
+          
+
+
+<article class="blog-post">
+  <header>
+    <h2 class="blog-post-title"><a href="http://www.datad.com.br/2017/05/tudo-objeto/">Tudo em Dart são objetos</a></h2>
+    <p class="blog-post-meta"><time datetime="2017-05-09T18:08:20-03:00">09 May 2017</time> by zidenis in 
+<i class="fa fa-folder" aria-hidden="true"></i>&nbsp;<a href="/categories/dart" rel="category tag">Dart</a>
+
+
+<i class="fa fa-tag" aria-hidden="true"></i>&nbsp;<a href="/tags/language" rel="tag">Language</a>, <a href="/tags/oop" rel="tag">OOP</a>
+
+</p>
+  </header>
+  <p>Podemos dizer que Dart é uma linguagem orientada à objetos pura. Isso significa que todos os valores em tempo de execução são objetos, sem exceções. Este axioma (<strong>tudo em Dart são objetos</strong>) resulta em diferenças em relação a outras linguagens comuns. Por exemplo, diferentemente do que ocorre em Java com seus &ldquo;tipos primitivos&rdquo;, até os dados mais simples como números e os boleanos <code>true</code> e <code>false</code> são objetos, até mesmo <a href="/2017/04/null/">null</a>, classes e funções são objetos.</p>
+
+<p></p>
+
+<p>Esta é uma característica de projeto da linguagem com objetivo de uniformizar  o tratamento dos dados, simplificando seu entendimento e uso. Isso simplifca, por exemplo, na medida em que não precisamos se preocupar com <code>boxing</code>/<code>unboxing</code> de tipos primitivos (<a href="https://www.codingblocks.net/programming/steps-to-understanding-boxing-and-unboxing/">leia aqui para entender melhor</a>).</p>
+
+<p>Sabemos que todo objeto é uma instância de uma classe. Como <strong>tudo em Dart são objetos</strong>, classes também são objetos e, portanto, classes são instâncias de uma classe (metaclasse). Todas as classes em Dart possuem a mesma metaclasse (<code>Type</code>). Para evitar uma regressão infinita, a linguagem define que a classe Type é uma instância dela mesmo.</p>
+
+<p>Para testar se um objeto é de um tipo, usamos o operador <code>is</code> ou <code>is!</code> . Por exemplo, a expressão <code>&quot;str&quot; is String</code> é avaliada como <code>true</code>. Mas, para descobrir qual a classe de um objeto podemos utilizar o método <code>runtimeType</code> herdado de Object que por padrão retorna uma representação do tipo do objeto em tempo de execução. Veja no exemplo abaixo que <code>print(s is String)</code> imprime <code>true</code> e <code>print(s.runtimeType)</code> imprime <code>String</code>.</p>
+
+<p><code data-gist-id="d04c2060ae1a405cebd105259c49cab7" data-gist-hide-footer="true" data-gist-hide-line-numbers="true"></code></p>
+
+<p>Mas, conforme podemos observar na classe <code>NotDart</code> do código acima, um objeto pode mentir sobre seu tipo na medida em que classes podem sobrescrever o método <code>runtimeType</code>. Isto pode ser útil para criação de objetos tipo <code>proxy</code> e abstração de detalhes de implementação. Caso você esteja escrevendo um <em>software</em> que precisa realmente saber qual a classe verdadeira de um objeto, deve-se utilizar <code>reflection</code> (<a href="http://stackoverflow.com/a/20253047/5189478">saiba mais</a>)</p>
+
+<p>Como dito anteriormente, funções também são objetos. Todo objeto que declare um método <code>call()</code> é considerado uma função que implementa implicitamente a interface da classe <code>Function</code> definida no core do SDK. É por isso que no código abaixo a expressão <code>prettyFunc is Function</code> é avaliada como <code>true</code>.</p>
+
+<p><code data-gist-id="337e22e8f32079463f6569b33da3d7a1" data-gist-hide-footer="true" data-gist-hide-line-numbers="true"></code></p>
+
+<p>O método <code>call()</code> é tratado de forma especial pela linguagem. A chamada de uma função é traduzida para a chamada do método <code>call()</code> do objeto, dessa forma podemos omitir isso em <code>prettyFunc(&quot;C&quot;, &quot;Dart is cool&quot;, &quot;D&quot;);</code>. Perceba que na classe <code>Function</code> é declarado o método <code>apply()</code> que pode ser utilizado para chamar uma funções com uma lista de argumentos.</p>
+
+  
+
+  
+  <hr>
+  <footer>
+
+  
+    <section>
+    <h4>Compartilhe</h4>
+    <nav class="nav sharing-icons">
+      <a class="nav-item" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fwww.datad.com.br%2f2017%2f05%2ftudo-objeto%2f" title="Share on Facebook"><span class="fa fa-facebook fa-2x" aria-hidden="true"></span></a>
+      <a class="nav-item" href="https://plus.google.com/share?url=http%3a%2f%2fwww.datad.com.br%2f2017%2f05%2ftudo-objeto%2f" title="Share on Google+"><span class="fa fa-google-plus fa-2x" aria-hidden="true"></span></a>
+      <a class="nav-item" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=http%3a%2f%2fwww.datad.com.br%2f2017%2f05%2ftudo-objeto%2f" title="Share on LinkedIn"><span class="fa fa-linkedin fa-2x" aria-hidden="true"></span></a>
+      <a class="nav-item" href="https://twitter.com/home?status=http%3a%2f%2fwww.datad.com.br%2f2017%2f05%2ftudo-objeto%2f" title="Tweet this"><span class="fa fa-twitter fa-2x"></span></a>
+    </nav>
+  </section>
+
+  
+
+  
+  <div id="disqus_thread"></div>
+<script type="text/javascript">
+
+(function() {
+  
+  
+  if (window.location.hostname == "localhost")
+    return;
+
+  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+  var disqus_shortname = 'datad';
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com/" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+  
+  </footer>
+  
+
+</article> 
+
+
+
+        </div> <!-- /.blog-main -->
+
+        <aside class="col-sm-3 offset-sm-1 blog-sidebar">
+  
+  <section class="sidebar-module sidebar-module-inset">
+    <h4>Sobre</h4>
+    <p>um site sobre Dart <em>language</em>, PostgreSQL e tecnologias relacionadas</p>
+  </section>
+  
+
+  
+        <section class="sidebar-module">
+    <h4>Posts Recentes</h4>
+    <ol class="list-unstyled">
+
+
+<li><a href="/2017/05/tudo-objeto/">Tudo em Dart são objetos</a></li>
+
+<li><a href="/2017/04/null/">Entendendo o que é Null em Dart</a></li>
+
+    </ol>
+  </section>
+
+  
+
+  
+</aside>
+
+
+      </div> <!-- /.row -->
+    </div> <!-- /.container -->
+
+    <footer class="blog-footer">
+      <p>
+      
+      created with <a class="discreteLink" href="https://gohugo.io" target="_blank">Hugo</a> and <a class="discreteLink"  href="https://github.com/alanorth/hugo-theme-bootstrap4-blog" target="_blank">hugo-theme-bootstrap4-blog</a>
+      
+      </p>
+      <p>
+      <a href="#"></a>
+      </p>
+    </footer>
+
+  </body>
+
+</html>

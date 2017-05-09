@@ -6,8 +6,35 @@
     <description>Recent content on datad</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>pt-BR</language>
-    <lastBuildDate>Sun, 30 Apr 2017 10:02:37 -0300</lastBuildDate>
+    <lastBuildDate>Tue, 09 May 2017 18:08:20 -0300</lastBuildDate>
     <atom:link href="http://www.datad.com.br/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Tudo em Dart são objetos</title>
+      <link>http://www.datad.com.br/2017/05/tudo-objeto/</link>
+      <pubDate>Tue, 09 May 2017 18:08:20 -0300</pubDate>
+      
+      <guid>http://www.datad.com.br/2017/05/tudo-objeto/</guid>
+      <description>&lt;p&gt;Podemos dizer que Dart é uma linguagem orientada à objetos pura. Isso significa que todos os valores em tempo de execução são objetos, sem exceções. Este axioma (&lt;strong&gt;tudo em Dart são objetos&lt;/strong&gt;) resulta em diferenças em relação a outras linguagens comuns. Por exemplo, diferentemente do que ocorre em Java com seus &amp;ldquo;tipos primitivos&amp;rdquo;, até os dados mais simples como números e os boleanos &lt;code&gt;true&lt;/code&gt; e &lt;code&gt;false&lt;/code&gt; são objetos, até mesmo &lt;a href=&#34;http://www.datad.com.br/2017/04/null/&#34;&gt;null&lt;/a&gt;, classes e funções são objetos.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;p&gt;Esta é uma característica de projeto da linguagem com objetivo de uniformizar  o tratamento dos dados, simplificando seu entendimento e uso. Isso simplifca, por exemplo, na medida em que não precisamos se preocupar com &lt;code&gt;boxing&lt;/code&gt;/&lt;code&gt;unboxing&lt;/code&gt; de tipos primitivos (&lt;a href=&#34;https://www.codingblocks.net/programming/steps-to-understanding-boxing-and-unboxing/&#34;&gt;leia aqui para entender melhor&lt;/a&gt;).&lt;/p&gt;
+
+&lt;p&gt;Sabemos que todo objeto é uma instância de uma classe. Como &lt;strong&gt;tudo em Dart são objetos&lt;/strong&gt;, classes também são objetos e, portanto, classes são instâncias de uma classe (metaclasse). Todas as classes em Dart possuem a mesma metaclasse (&lt;code&gt;Type&lt;/code&gt;). Para evitar uma regressão infinita, a linguagem define que a classe Type é uma instância dela mesmo.&lt;/p&gt;
+
+&lt;p&gt;Para testar se um objeto é de um tipo, usamos o operador &lt;code&gt;is&lt;/code&gt; ou &lt;code&gt;is!&lt;/code&gt; . Por exemplo, a expressão &lt;code&gt;&amp;quot;str&amp;quot; is String&lt;/code&gt; é avaliada como &lt;code&gt;true&lt;/code&gt;. Mas, para descobrir qual a classe de um objeto podemos utilizar o método &lt;code&gt;runtimeType&lt;/code&gt; herdado de Object que por padrão retorna uma representação do tipo do objeto em tempo de execução. Veja no exemplo abaixo que &lt;code&gt;print(s is String)&lt;/code&gt; imprime &lt;code&gt;true&lt;/code&gt; e &lt;code&gt;print(s.runtimeType)&lt;/code&gt; imprime &lt;code&gt;String&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;code data-gist-id=&#34;d04c2060ae1a405cebd105259c49cab7&#34; data-gist-hide-footer=&#34;true&#34; data-gist-hide-line-numbers=&#34;true&#34;&gt;&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Mas, conforme podemos observar na classe &lt;code&gt;NotDart&lt;/code&gt; do código acima, um objeto pode mentir sobre seu tipo na medida em que classes podem sobrescrever o método &lt;code&gt;runtimeType&lt;/code&gt;. Isto pode ser útil para criação de objetos tipo &lt;code&gt;proxy&lt;/code&gt; e abstração de detalhes de implementação. Caso você esteja escrevendo um &lt;em&gt;software&lt;/em&gt; que precisa realmente saber qual a classe verdadeira de um objeto, deve-se utilizar &lt;code&gt;reflection&lt;/code&gt; (&lt;a href=&#34;http://stackoverflow.com/a/20253047/5189478&#34;&gt;saiba mais&lt;/a&gt;)&lt;/p&gt;
+
+&lt;p&gt;Como dito anteriormente, funções também são objetos. Todo objeto que declare um método &lt;code&gt;call()&lt;/code&gt; é considerado uma função que implementa implicitamente a interface da classe &lt;code&gt;Function&lt;/code&gt; definida no core do SDK. É por isso que no código abaixo a expressão &lt;code&gt;prettyFunc is Function&lt;/code&gt; é avaliada como &lt;code&gt;true&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;code data-gist-id=&#34;337e22e8f32079463f6569b33da3d7a1&#34; data-gist-hide-footer=&#34;true&#34; data-gist-hide-line-numbers=&#34;true&#34;&gt;&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;O método &lt;code&gt;call()&lt;/code&gt; é tratado de forma especial pela linguagem. A chamada de uma função é traduzida para a chamada do método &lt;code&gt;call()&lt;/code&gt; do objeto, dessa forma podemos omitir isso em &lt;code&gt;prettyFunc(&amp;quot;C&amp;quot;, &amp;quot;Dart is cool&amp;quot;, &amp;quot;D&amp;quot;);&lt;/code&gt;. Perceba que na classe &lt;code&gt;Function&lt;/code&gt; é declarado o método &lt;code&gt;apply()&lt;/code&gt; que pode ser utilizado para chamar uma funções com uma lista de argumentos.&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>Entendendo o que é Null em Dart</title>
