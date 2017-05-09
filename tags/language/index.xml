@@ -14,7 +14,7 @@
       <pubDate>Sun, 30 Apr 2017 10:02:37 -0300</pubDate>
       
       <guid>http://www.datad.com.br/2017/04/null/</guid>
-      <description>&lt;p&gt;&lt;code&gt;null&lt;/code&gt; apresenta particularidades em Dart que o diferencia de outras linguagens de programação como C, Java e Javascript. A começar por &lt;code&gt;null&lt;/code&gt; ser um objeto como qualquer outro (em Dart tudo é um objeto) enquanto que em Java, por exemplo, ele é um valor literal. São questões sutís que precisamos ficar atentos na hora de programar, conforme veremos.&lt;/p&gt;
+      <description>&lt;p&gt;&lt;code&gt;null&lt;/code&gt; apresenta particularidades em Dart que o diferencia da implementação em outras linguagens de programação como C, Java e Javascript. A começar por &lt;code&gt;null&lt;/code&gt; ser um objeto como qualquer outro (em Dart tudo é um objeto) enquanto que em Java, por exemplo, ele é um valor literal. São questões sutís que precisamos ficar atentos na hora de programar, conforme veremos.&lt;/p&gt;
 
 &lt;p&gt;&lt;/p&gt;
 
