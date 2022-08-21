@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Tags on zidenis blog</title>
+    <title>Tags on zidenis&#39; blog</title>
     <link>https://zidenis.github.io/tags/</link>
-    <description>Recent content in Tags on zidenis blog</description>
+    <description>Recent content in Tags on zidenis&#39; blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>pt-br</language>
+    <copyright>Last update on 08-2022</copyright>
     <lastBuildDate>Sun, 21 Aug 2022 15:57:04 -0300</lastBuildDate><atom:link href="https://zidenis.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>blog</title>

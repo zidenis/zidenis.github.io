@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Categories on zidenis blog</title>
+    <title>Categories on zidenis&#39; blog</title>
     <link>https://zidenis.github.io/categories/</link>
-    <description>Recent content in Categories on zidenis blog</description>
+    <description>Recent content in Categories on zidenis&#39; blog</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>pt-br</language><atom:link href="https://zidenis.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+    <language>pt-br</language>
+    <copyright>Last update on 08-2022</copyright><atom:link href="https://zidenis.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>
