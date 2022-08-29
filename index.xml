@@ -7,7 +7,17 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>pt-br</language>
     <copyright>Last update on 08-2022</copyright>
-    <lastBuildDate>Sun, 21 Aug 2022 15:57:04 -0300</lastBuildDate><atom:link href="https://zidenis.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 21 Aug 2022 20:09:36 -0300</lastBuildDate><atom:link href="https://zidenis.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Setting up a PostgreSQL Lab using Vagrant and Ansible on Windows (WSL 2 with VirtualBox)</title>
+      <link>https://zidenis.github.io/2022/08/setting-up-a-postgresql-lab-using-vagrant-and-ansible-on-windows-wsl-2-with-virtualbox/</link>
+      <pubDate>Sun, 21 Aug 2022 20:09:36 -0300</pubDate>
+      
+      <guid>https://zidenis.github.io/2022/08/setting-up-a-postgresql-lab-using-vagrant-and-ansible-on-windows-wsl-2-with-virtualbox/</guid>
+      <description>Install VirtualBox on Windows c:\&amp;gt;&amp;#34;c:\Program Files\Oracle\VirtualBox\VBoxManage.exe&amp;#34; --version 6.1.36r152435 Install Vagrant on Windows c:\&amp;gt;vagrant --version Vagrant 2.3.0 WSL 2 c:\&amp;gt;wsl --list --verbose NAME STATE VERSION * docker-desktop-data Stopped 2 Ubuntu Running 2 docker-desktop Stopped 2 Install Vagrant on WSL 2 Doc: https://www.vagrantup.com/docs/other/wsl
+&amp;ldquo;When Vagrant is installed on the Windows system the version installed within the Linux distribution must match.</description>
+    </item>
+    
     <item>
       <title>Bootstrap</title>
       <link>https://zidenis.github.io/2022/08/bootstrap/</link>

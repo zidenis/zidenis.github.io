@@ -6,39 +6,25 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
 
-<meta property="og:title" content="Posts" />
+<meta property="og:title" content="postgres" />
 <meta property="og:description" content="simple" />
 <meta property="og:type" content="website" />
-<meta property="og:url" content="https://zidenis.github.io/posts/" />
+<meta property="og:url" content="https://zidenis.github.io/tags/postgres/" />
 <meta property="og:updated_time" content="2022-08-21T20:09:36-03:00" />
 
 
 
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Posts"/>
+<meta name="twitter:title" content="postgres"/>
 <meta name="twitter:description" content="simple"/>
 <meta name="generator" content="Hugo 0.101.0" />
 
 
     
-<script type="application/ld+json">
-{
-  "@context": "http://schema.org",
-  "@type": "Blog",
-  "headline": "zidenis' blog",
-  "url" : "https://zidenis.github.io/posts/",
-  "author": {
-    "@type": "Person",
-    "name": "zidenis"
-  },
-  "dateModified": "2022-08-21T20:09:36-03:00",
-  "keywords": "ansible, blog, linux, postgres",
-  "description":"simple"
-}
-</script>
+      
+    
 
-
-    <link rel="canonical" href="https://zidenis.github.io/posts/">
+    <link rel="canonical" href="https://zidenis.github.io/tags/postgres/">
 
     <title>zidenis&#39; blog</title>
 
@@ -53,7 +39,7 @@
     <script defer src="https://zidenis.github.io/js/fontawesome.min.f5072c55a0721857184db93a50561d7dc13975b4de2e19db7f81eb5f3fa57270.js" integrity="sha256-9QcsVaByGFcYTbk6UFYdfcE5dbTeLhnbf4HrXz&#43;lcnA=" crossorigin="anonymous"></script>
 
     <!-- RSS 2.0 feed -->
-    <link rel="alternate" type="application/rss+xml" href="https://zidenis.github.io/posts/index.xml" title="zidenis' blog" />
+    <link rel="alternate" type="application/rss+xml" href="https://zidenis.github.io/tags/postgres/index.xml" title="zidenis' blog" />
     
 
     
@@ -88,7 +74,6 @@
         <div class="col-sm-8 blog-main">
 
           
-
 
 
 
@@ -193,58 +178,6 @@
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>$ psql -h 192.168.56.14 -p <span style="color:#ae81ff">5432</span> -U postgres -c <span style="color:#e6db74">&#34;select version();&#34;</span> -t
 </span></span><span style="display:flex;"><span> PostgreSQL 14.5 on x86_64-pc-linux-gnu, compiled by gcc <span style="color:#f92672">(</span>GCC<span style="color:#f92672">)</span> 8.5.0 <span style="color:#ae81ff">20210514</span> <span style="color:#f92672">(</span>Red Hat 8.5.0-10<span style="color:#f92672">)</span>, 64-bit
-</span></span></code></pre></div>
-</article> 
-
-
-
-
-
-
-<article class="blog-post">
-  <header>
-    <h2 class="blog-post-title" dir="auto"><a href="https://zidenis.github.io/2022/08/bootstrap/">Bootstrap</a></h2>
-    <p class="blog-post-meta"><time datetime="2022-08-21T15:57:04-03:00">21 Aug 2022</time> by zidenis in 
-
-<span class="fas fa-tag" aria-hidden="true"></span>&nbsp;<a href="/tags/blog/" rel="tag">blog</a>
-
-</p>
-  </header>
-  <ul>
-<li>Bootstrapping the blog. Using Hugo + hugo-theme-bootstrap4-blog.</li>
-</ul>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>$ wget https://github.com/gohugoio/hugo/releases/download/v0.101.0/hugo_0.101.0_Linux-64bit.tar.gz
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>$ tar xzf hugo_0.101.0_Linux-64bit.tar.gz 
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>$ cp hugo /usr/local/bin
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>$ hugo version
-</span></span><span style="display:flex;"><span>hugo v0.101.0-466fa43c16709b4483689930a4f9ac8add5c9f66 linux/amd64 BuildDate<span style="color:#f92672">=</span>2022-06-16T07:09:16Z VendorInfo<span style="color:#f92672">=</span>gohugoio
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>$ hugo new site zidenis
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>$ cd zidenis
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>$ git init
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>$ git submodule add https://github.com/zidenis/hugo-theme-bootstrap4-blog.git themes/bootstrap4-blog
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>$ git submodule add https://github.com/zidenis/zidenis.github.io.git
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>$ cat &gt; config.toml <span style="color:#e6db74">&lt;&lt; EOF
-</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">baseURL = &#34;https://zidenis.github.io&#34;
-</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">languageCode = &#34;pt-br&#34;
-</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">title = &#34;zidenis blog&#34;
-</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">theme = &#34;bootstrap4-blog&#34;
-</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">publishdir = &#34;zidenis.github.io&#34;
-</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">EOF</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>$ hugo new posts/bootstrap.md
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>$ hugo server -D
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>$ hugo -D
 </span></span></code></pre></div>
 </article> 
 

@@ -10,7 +10,7 @@
 <meta property="og:description" content="simple" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://zidenis.github.io/" />
-<meta property="og:updated_time" content="2022-08-21T15:57:04-03:00" />
+<meta property="og:updated_time" content="2022-08-21T20:09:36-03:00" />
 
 
 
@@ -31,8 +31,8 @@
     "@type": "Person",
     "name": "zidenis"
   },
-  "dateModified": "2022-08-21T15:57:04-03:00",
-  "keywords": "blog",
+  "dateModified": "2022-08-21T20:09:36-03:00",
+  "keywords": "ansible, blog, linux, postgres",
   "description":"simple"
 }
 </script>
@@ -89,6 +89,112 @@
 
           
 
+
+
+
+
+
+
+<article class="blog-post">
+  <header>
+    <h2 class="blog-post-title" dir="auto"><a href="https://zidenis.github.io/2022/08/setting-up-a-postgresql-lab-using-vagrant-and-ansible-on-windows-wsl-2-with-virtualbox/">Setting up a PostgreSQL Lab using Vagrant and Ansible on Windows (WSL 2 with VirtualBox)</a></h2>
+    <p class="blog-post-meta"><time datetime="2022-08-21T20:09:36-03:00">21 Aug 2022</time> by zidenis in 
+
+<span class="fas fa-tag" aria-hidden="true"></span>&nbsp;<a href="/tags/postgres/" rel="tag">postgres</a>, <a href="/tags/linux/" rel="tag">linux</a>, <a href="/tags/ansible/" rel="tag">ansible</a>
+
+</p>
+  </header>
+  <h3 id="install-virtualbox-on-windows">Install VirtualBox on Windows</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>c:<span style="color:#ae81ff">\&gt;</span><span style="color:#e6db74">&#34;c:\Program Files\Oracle\VirtualBox\VBoxManage.exe&#34;</span> --version
+</span></span><span style="display:flex;"><span>6.1.36r152435
+</span></span></code></pre></div><h3 id="install-vagrant-on-windows">Install Vagrant on Windows</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>c:<span style="color:#ae81ff">\&gt;</span>vagrant --version
+</span></span><span style="display:flex;"><span>Vagrant 2.3.0
+</span></span></code></pre></div><h3 id="wsl-2">WSL 2</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>c:<span style="color:#ae81ff">\&gt;</span>wsl --list --verbose
+</span></span><span style="display:flex;"><span>  NAME                   STATE           VERSION
+</span></span><span style="display:flex;"><span>* docker-desktop-data    Stopped         <span style="color:#ae81ff">2</span>
+</span></span><span style="display:flex;"><span>  Ubuntu                 Running         <span style="color:#ae81ff">2</span>
+</span></span><span style="display:flex;"><span>  docker-desktop         Stopped         <span style="color:#ae81ff">2</span>  
+</span></span></code></pre></div><h3 id="install-vagrant-on-wsl-2">Install Vagrant on WSL 2</h3>
+<p>Doc: <a href="https://www.vagrantup.com/docs/other/wsl">https://www.vagrantup.com/docs/other/wsl</a></p>
+<p>&ldquo;When Vagrant is installed on the Windows system the version installed within the Linux distribution must match.&rdquo;</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>c:<span style="color:#ae81ff">\&gt;</span>wsl -d Ubuntu
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$ lsb_release --all
+</span></span><span style="display:flex;"><span>No LSB modules are available.
+</span></span><span style="display:flex;"><span>Distributor ID: Ubuntu
+</span></span><span style="display:flex;"><span>Description:    Ubuntu 20.04.3 LTS
+</span></span><span style="display:flex;"><span>Release:        20.04
+</span></span><span style="display:flex;"><span>Codename:       focal
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$ curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$ sudo apt-add-repository <span style="color:#e6db74">&#34;deb [arch=amd64] https://apt.releases.hashicorp.com </span><span style="color:#66d9ef">$(</span>lsb_release -cs<span style="color:#66d9ef">)</span><span style="color:#e6db74"> main&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$ sudo apt-get update 
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$ sudo apt-get install vagrant
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$ vagrant --version
+</span></span><span style="display:flex;"><span>Vagrant 2.3.0
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$ cd ~
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$ cat &gt;&gt; .bashrc <span style="color:#e6db74">&lt;&lt; EOF
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74"># Setup Vagrant
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">export VAGRANT_WSL_ENABLE_WINDOWS_ACCESS=&#34;1&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">export VAGRANT_WSL_WINDOWS_ACCESS_USER_HOME_PATH=&#34;/mnt/c/Users/denis/&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">export PATH=&#34;\$PATH:/mnt/c/Program\ Files/Oracle/VirtualBox/&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">EOF</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># https://github.com/hashicorp/vagrant/issues/12081</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># https://github.com/Karandash8/virtualbox_WSL2</span>
+</span></span><span style="display:flex;"><span>$ vagrant plugin install virtualbox_WSL2
+</span></span></code></pre></div><h3 id="install-ansible">Install Ansible</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ sudo apt update
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$ sudo apt install software-properties-common
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$ sudo add-apt-repository --yes --update ppa:ansible/ansible
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$ sudo apt install ansible
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$ ansible --version
+</span></span><span style="display:flex;"><span>ansible <span style="color:#f92672">[</span>core 2.12.8<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>  config file <span style="color:#f92672">=</span> /etc/ansible/ansible.cfg
+</span></span><span style="display:flex;"><span>  configured module search path <span style="color:#f92672">=</span> <span style="color:#f92672">[</span><span style="color:#e6db74">&#39;/home/denis/.ansible/plugins/modules&#39;</span>, <span style="color:#e6db74">&#39;/usr/share/ansible/plugins/modules&#39;</span><span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>  ansible python module location <span style="color:#f92672">=</span> /usr/lib/python3/dist-packages/ansible
+</span></span><span style="display:flex;"><span>  ansible collection location <span style="color:#f92672">=</span> /home/denis/.ansible/collections:/usr/share/ansible/collections
+</span></span><span style="display:flex;"><span>  executable location <span style="color:#f92672">=</span> /usr/bin/ansible
+</span></span><span style="display:flex;"><span>  python version <span style="color:#f92672">=</span> 3.8.10 <span style="color:#f92672">(</span>default, Nov <span style="color:#ae81ff">26</span> 2021, 20:14:08<span style="color:#f92672">)</span> <span style="color:#f92672">[</span>GCC 9.3.0<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>  jinja version <span style="color:#f92672">=</span> 2.10.1
+</span></span><span style="display:flex;"><span>  libyaml <span style="color:#f92672">=</span> True
+</span></span></code></pre></div><h3 id="lab-setup">Lab setup</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ git clone https://github.com/zidenis/vagrant_ansible_postgresql_lab.git
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$ cd vagrant_ansible_postgresql_lab/
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$ vagrant up
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$ vagrant status
+</span></span><span style="display:flex;"><span>Current machine states:
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>pgsql-12                  running <span style="color:#f92672">(</span>virtualbox<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>pgsql-13                  running <span style="color:#f92672">(</span>virtualbox<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>pgsql-14                  running <span style="color:#f92672">(</span>virtualbox<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$ psql -h 192.168.56.12 -p <span style="color:#ae81ff">5432</span> -U postgres -c <span style="color:#e6db74">&#34;select version();&#34;</span> -t
+</span></span><span style="display:flex;"><span> PostgreSQL 12.12 on x86_64-pc-linux-gnu, compiled by gcc <span style="color:#f92672">(</span>GCC<span style="color:#f92672">)</span> 8.5.0 <span style="color:#ae81ff">20210514</span> <span style="color:#f92672">(</span>Red Hat 8.5.0-10<span style="color:#f92672">)</span>, 64-bit
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$ psql -h 192.168.56.13 -p <span style="color:#ae81ff">5432</span> -U postgres -c <span style="color:#e6db74">&#34;select version();&#34;</span> -t
+</span></span><span style="display:flex;"><span> PostgreSQL 13.8 on x86_64-pc-linux-gnu, compiled by gcc <span style="color:#f92672">(</span>GCC<span style="color:#f92672">)</span> 8.5.0 <span style="color:#ae81ff">20210514</span> <span style="color:#f92672">(</span>Red Hat 8.5.0-10<span style="color:#f92672">)</span>, 64-bit
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$ psql -h 192.168.56.14 -p <span style="color:#ae81ff">5432</span> -U postgres -c <span style="color:#e6db74">&#34;select version();&#34;</span> -t
+</span></span><span style="display:flex;"><span> PostgreSQL 14.5 on x86_64-pc-linux-gnu, compiled by gcc <span style="color:#f92672">(</span>GCC<span style="color:#f92672">)</span> 8.5.0 <span style="color:#ae81ff">20210514</span> <span style="color:#f92672">(</span>Red Hat 8.5.0-10<span style="color:#f92672">)</span>, 64-bit
+</span></span></code></pre></div>
+</article> 
 
 
 
@@ -164,6 +270,8 @@
     <h4>Recent Posts</h4>
     <ol class="list-unstyled">
 
+
+<li><a href="/2022/08/setting-up-a-postgresql-lab-using-vagrant-and-ansible-on-windows-wsl-2-with-virtualbox/">Setting up a PostgreSQL Lab using Vagrant and Ansible on Windows (WSL 2 with VirtualBox)</a></li>
 
 <li><a href="/2022/08/bootstrap/">Bootstrap</a></li>
 
